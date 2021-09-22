@@ -43,12 +43,27 @@ export default function Post({ post }: PostProps): JSX.Element {
     return <div>Carregando...</div>;
   }
 
-  const t = post.data.content.map(item => {
+  const formattedContent = post.data.content.map(item => {
     return {
       heading: item.heading,
       body: RichText.asHtml(item.body),
     };
   });
+
+  const words = post.data.content.reduce((acc, item) => {
+    const t = item.heading.split(/\s+/).length;
+    const y = item.body[0].text.split(/\s+/).length;
+    const sum = y + t;
+    // eslint-disable-next-line no-param-reassign
+    acc += sum;
+
+    return acc;
+  }, 0);
+
+  const wpm = 200;
+
+  const timeToRead = `${Math.ceil(words / wpm)} min`;
+  const teste = `${4} min`;
 
   return (
     <div className={styles.container}>
@@ -71,18 +86,21 @@ export default function Post({ post }: PostProps): JSX.Element {
           </div>
           <div>
             <FiClock />
-            <span>4 min</span>
+            <span>{teste}</span>
+            <span>{timeToRead}</span>
           </div>
         </div>
 
-        {t.map(item => {
-          return (
-            <div key={item.heading}>
-              <h2>{item.heading}</h2>
-              <div dangerouslySetInnerHTML={{ __html: item.body }} />
-            </div>
-          );
-        })}
+        <div className={styles.bodyContent}>
+          {formattedContent.map(item => {
+            return (
+              <div key={item.heading}>
+                <h2>{item.heading}</h2>
+                <div dangerouslySetInnerHTML={{ __html: item.body }} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
