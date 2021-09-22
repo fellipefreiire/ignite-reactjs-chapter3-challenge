@@ -14,11 +14,9 @@ import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
 interface Post {
-  uid: string;
   first_publication_date: string | null;
   data: {
     title: string;
-    subtitle: string;
     banner: {
       url: string;
     };
@@ -51,9 +49,9 @@ export default function Post({ post }: PostProps): JSX.Element {
   });
 
   const words = post.data.content.reduce((acc, item) => {
-    const t = item.heading.split(/\s+/).length;
-    const y = item.body[0].text.split(/\s+/).length;
-    const sum = y + t;
+    const headingWords = item.heading.split(/\s+/).length;
+    const bodyWords = RichText.asText(item.body).split(/\s+/).length;
+    const sum = headingWords + bodyWords;
     // eslint-disable-next-line no-param-reassign
     acc += sum;
 
@@ -63,7 +61,6 @@ export default function Post({ post }: PostProps): JSX.Element {
   const wpm = 200;
 
   const timeToRead = `${Math.ceil(words / wpm)} min`;
-  const teste = `${4} min`;
 
   return (
     <div className={styles.container}>
