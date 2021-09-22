@@ -30,29 +30,29 @@
     color: var(--info);
   }
 
-  > div {
-    display: flex;
+  // > div {
+  //   display: flex;
 
-    div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      svg {
-        width: 20px;
-        height: 20px;
-      }
+  //   div {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     svg {
+  //       width: 20px;
+  //       height: 20px;
+  //     }
 
-      span,
-      time {
-        font-size: 0.875rem;
-        line-height: 1.05875rem;
-        color: var(--info);
-        margin-left: 0.5rem;
-      }
+  //     span,
+  //     time {
+  //       font-size: 0.875rem;
+  //       line-height: 1.05875rem;
+  //       color: var(--info);
+  //       margin-left: 0.5rem;
+  //     }
 
-      & + div {
-        margin-left: 1.5rem;
-      }
-    }
-  }
+  //     & + div {
+  //       margin-left: 1.5rem;
+  //     }
+  //   }
+  // }
 }

@@ -71,7 +71,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               </a>
             </Link>
             <h2>{post.data.subtitle}</h2>
-            <div>
+            <div className={commonStyles.infoWrapper}>
               <div>
                 <FiCalendar />
                 <time>
